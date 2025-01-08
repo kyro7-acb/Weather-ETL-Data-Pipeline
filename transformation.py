@@ -11,12 +11,12 @@ def transform_data(data):
     "name": "City",
     "main.temp": "Temperature (K)",
     "main.humidity": "Humidity",
-    "weather": "Weather Description"
+    "weather": "Weather_Description"
     },inplace = True
     )
-    tred_df["Temperature (C)"] = tred_df["Temperature (K)"] - 273.15
+    tred_df["Temperature_C"] = tred_df["Temperature (K)"] - 273.15
 
-    tred_df["Weather Description"] = tred_df["Weather Description"].apply( lambda x: x[0]["description"]
+    tred_df["Weather_Description"] = tred_df["Weather_Description"].apply( lambda x: x[0]["description"]
     if isinstance(x, list) and len(x) > 0 else "Unknown")
 
     tred_df.drop(columns=["Temperature (K)"], inplace= True)
@@ -24,4 +24,6 @@ def transform_data(data):
     return  tred_df
 
 tred_d=transform_data(data)
-print(tred_d)
+
+if __name__ == "__main__":
+    print(tred_d)
